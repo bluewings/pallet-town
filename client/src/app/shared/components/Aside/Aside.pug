@@ -1,0 +1,106 @@
+div(styleName='root')
+
+
+  div(styleName='avatar')
+    .container-fluid
+      .row
+        .col-xs-12
+          //- h1 {this.props.templates.length}
+          div(styleName='thmb') 샘플
+          
+          //- h4 profile
+        //- .col-xs-collapse-right.col-xs-4
+          img(src='/imgs/app/avatars/avatar0.png', width='40', height='40')
+        //- #avatar-col.col-xs-collapse-left.col-xs-8
+          div(style='top: 23px; font-size: 16px; line-height: 1; position: relative;') Anna Sanchez
+          div
+            #demo-progress.progress
+              .progress-bar(role='progressbar', aria-valuenow='30', aria-valuemin='0', aria-valuemax='100')
+            a(href='/ltr/lock')
+              span#demo-icon.icon-fontello-lock-5.rubix-icon
+
+  //- .sidebar-controls-container(dir='ltr')
+  div(styleName='sidebar-controls-container')
+    //- ul.sidebar-controls(tabindex='-1')
+      li.sidebar-control-btn.active(tabindex='-1')
+        a(href='#', tabindex='-1')
+          span.icon-fontello-docs.rubix-icon
+      li.sidebar-control-btn(tabindex='-1')
+        a(href='#', tabindex='-1')
+          span.icon-fontello-chat-1.rubix-icon
+      li.sidebar-control-btn(tabindex='-1')
+        a(href='#', tabindex='-1')
+          span.icon-fontello-chart-pie-2.rubix-icon
+      li.sidebar-control-btn(tabindex='-1')
+        a(href='#', tabindex='-1')
+          span.icon-fontello-th-list-2.rubix-icon
+      li.sidebar-control-btn(tabindex='-1')
+        a(href='#', tabindex='-1')
+          span.icon-fontello-bell-5.rubix-icon
+
+
+
+  .container-fluid
+    .row
+      .col-xs-12
+        //- input.form-control(type='text', placeholder='Search...', styleName='sidebar-search')
+
+        div(styleName='sidebar-nav-container')
+          ul(styleName='sidebar-nav')
+            div(styleName='sidebar-header') PAGES
+
+
+            //- | {this.state.menus.map((menu, i) =>
+            //- li.active(key='{i}', styleName='sidebar-nav-item')
+            //-   Link(to='{menu.path}')
+            //-     span(styleName='name') {menu.name}
+            //- | )}
+
+
+            li.active(@repeat='this.state.menus as menu, i', styleName='sidebar-nav-item')
+              Link(to='{menu.path}')
+                span(styleName='name') {menu.name}
+
+              ul(@if='menu.submenus && menu.submenus.mapFn && this.props[menu.submenus.refName]', styleName='sidebar-nav')
+                //- li(styleName='sidebar-nav-item')
+                //-   a(href='/ltr/mailbox/inbox')
+                //-     span.icon-feather-inbox.rubix-icon
+                //-     span(styleName='name') Inbox
+                //- li(styleName='sidebar-nav-item')
+                //-   a(href='/ltr/mailbox/mail')
+                //-     span.icon-outlined-mail-open.rubix-icon
+                //-     span(styleName='name') Mail
+                //- li(styleName='sidebar-nav-item')
+                //-   a(href='/ltr/mailbox/compose')
+                //-     span.icon-dripicons-message.rubix-icon
+                //-     span(styleName='name') Compose
+
+
+
+                li.active(@repeat='this.props[menu.submenus.refName] as item, i', styleName='sidebar-nav-item')
+                  Link(to='{menu.submenus.mapFn(item).path}')
+                    span(styleName='name') {menu.submenus.mapFn(item).name}
+
+            //- li.active(styleName='sidebar-nav-item')
+            //-   Link(to='/')
+            //-     //- span.icon-fontello-gauge.rubix-icon
+            //-     span(styleName='name') 대시보드
+            //- li.active(styleName='sidebar-nav-item active')
+            //-   Link(to='/graph')
+            //-     //- span.icon-fontello-gauge.rubix-icon
+            //-     span(styleName='name') 그래프
+
+
+
+
+            //- li(styleName='sidebar-nav-item')
+            //-   a(href='')
+            //-     span.icon-feather-mail.rubix-icon
+            //-     span(styleName='name')
+            //-       span
+            //-         // react-text: 423
+            //-         | Mailbox
+            //-         // /react-text
+            //-         span.bg-darkgreen45.fg-white.label.label-default 3
+            //-     span.toggle-button.icon-fontello-left-open-3.rubix-icon
+

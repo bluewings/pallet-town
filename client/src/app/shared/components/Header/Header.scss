@@ -1,0 +1,127 @@
+@import "../../../styles/variables.scss";
+
+@import url("https://fonts.googleapis.com/css?family=Changa:200");
+
+$icon-bar-width: 4px;
+$icon-size: 20px;
+$badge-size: 16px;
+
+.root {
+    left: 0;
+    right: 0;
+    margin-bottom: 0;
+    min-height: $header-height;
+    background: #273135;
+    border: none;
+
+    .col-navbar-toggle {
+        padding-left: 0;
+
+        :global(.navbar-toggle) {
+            background-color: orange;
+            float: none;
+            color: #fff;
+            background: #2AA38B;
+            border: none;
+            width: $header-height;
+            height: $header-height;
+            margin: 0;
+            border-radius: 0;
+
+            :global(.icon-bar) {
+                position: relative;
+                background-color: #fff;
+                width: $icon-bar-width * 6;
+                height: $icon-bar-width;
+                margin-top: $icon-bar-width;
+                margin-bottom: $icon-bar-width;
+                margin-left: 50%;
+                display: block;
+                left: $icon-bar-width * -3;
+            }
+        }
+    }
+
+    :global(.navbar-brand) {
+        width: 100%;
+        text-align: center;
+        height: $header-height;
+        padding-top: 0;
+        padding-bottom: 0;
+        white-space: nowrap;
+        font-family: 'Changa';
+        line-height: $header-height;
+        font-size: 24px;
+        color: #eee;
+
+        &:hover, &:focus {
+            color: #eee;
+        }
+
+        .logo {
+            display: inline-block;
+            height: $header-height;
+            margin-right: 6px;
+
+            svg {
+                height: 30px;
+                margin-top: -2px;
+            }
+        }
+    }
+
+    .navbar-icon {
+        $icon-padding: floor(($header-height - $icon-size) / 4);
+
+        > li {
+            width: $header-height - $icon-padding * 2;
+
+            &:first-child {
+                width: $header-height - $icon-padding;
+                padding-left: $icon-padding;
+            }
+
+            &:last-child {
+                width: $header-height - $icon-padding;
+                padding-right: $icon-padding;
+            }
+
+            > a {
+                position: relative;
+                line-height: $header-height;
+                padding-top: 0;
+                padding-bottom: 0;
+                color: #89949b;
+                font-size: 20px;
+                white-space: nowrap;
+                padding: 0;
+                text-align: center;
+
+                &:hover, &:focus {
+                    color: #fff;
+                }
+
+                > :global(.badge) {
+                    position: absolute;
+                    bottom: 50%;
+                    left: 50%;
+                    margin-bottom: floor(($icon-size - $badge-size) / 1);
+                    margin-left: floor(($icon-size - $badge-size) / 2);
+                    width: $badge-size;
+                    height: $badge-size;
+                    line-height: $badge-size;
+                    padding: 0;
+                    border-radius: 50%;
+
+                    //                     background-color: #2EB398;
+                    // color: #fff;
+                    background-color: #fff;
+                    color: #273135;
+                    box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.75);
+                }
+            }
+        }
+    }
+}
+
+

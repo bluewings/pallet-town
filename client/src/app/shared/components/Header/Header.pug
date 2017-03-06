@@ -1,0 +1,217 @@
+nav.navbar.navbar-default.navbar-fixed-top(styleName='root')
+  .container-fluid
+    .row
+      .visible-xs.col-xs-3(styleName='col-navbar-toggle')
+        button.navbar-toggle(type='button', data-toggle='collapse', data-target='#navbar', aria-expanded='false', aria-controls='navbar', onClick='{this.props.toggleAside.bind(this)}')
+          span.sr-only Toggle navigation
+          span.icon-bar
+          span.icon-bar
+          span.icon-bar
+      .col-sm-4.col-xs-6
+        .navbar-header
+          a.navbar-brand(href='#')
+            span(styleName='logo')
+              //- without box
+              //- svg(xmlns='http://www.w3.org/2000/svg', viewBox='0 0 121 111')
+                g(transform='translate(.5,.5)')
+                  path(fill='#eee',
+                    d='M0,0 0,110 41,110 41,55 79,110 120,110 120,0 79,0 79,55 41,0 Z')
+              svg(xmlns='http://www.w3.org/2000/svg', viewBox='0 0 221 221')
+                g(transform='translate(.5,.5)')
+                  path(fill='#eee',
+                    d='M0,0 0,220 220,220 220,0 170,0 170,165 129,165 91,110 91,165 50,165 50,0 Z')
+                  path(fill='#eee',
+                    d='M40,0 40,55 50,55 91,55 129,110 129,55 170,55 180,55 180,0 Z')
+
+            | gela
+            //- img(src='/imgs/common/logo.png', alt='rubix', width='111', height='28')
+      .col-xs-collapse-right.text-right.col-sm-8.col-xs-3
+        ul.hidden-xs.nav.navbar-nav.navbar-right(styleName='navbar-icon')
+          //- li.divider
+          li.pressed(role='presentation')
+            Link(to='/graph')
+              span.glyphicon.glyphicon-user
+          li.pressed(role='presentation')
+            a(href='/ltr/mailbox/inbox')
+              span.glyphicon.glyphicon-comment
+              span.badge 1
+
+
+
+
+          li.pressed(role='presentation')
+            a(href='/ltr/mailbox/inbox')
+              span.glyphicon.glyphicon-cog
+
+            //- sub menu check
+            //- ul(role='menu', className='menu-default dropdown-menu', aria-labelledby='notifications-menu')
+              li(role='heading', className='dropdown-header')
+                span Your notifications
+              li(role='presentation', className='')
+                a(href='#', role='menuitem', tabindex='-1')
+                  div(className='container-fluid')
+                    div(className='row')
+                      div(className='col-xs-collapse-right  avatar-container col-xs-2')
+                        div
+                          img(src='/imgs/app/avatars/avatar22.png', width='40', height='40', alt='sarah_patchett')
+                        div(className='text-center')
+                          span(className='label label-info') NEW
+                      div(className='col-xs-collapse-right  col-xs-collapse-left  notification-container col-xs-10')
+                        div(className='time')
+                          strong(className='fg-darkgray50')
+                            span(className='icon-fontello-chat-5 rubix-icon')
+                            em
+                              span an hour ago
+                        div(className='message-header')
+                          strong(className='fg-darkgreen45') Sarah Patchett sent you a private message
+                        div(className='message-details fg-text')
+                          span
+                            | Hey Anna! Sorry for delayed response. I've just finished reading the mail you sent couple of days ago...
+              li(role='presentation', className='')
+                a(href='#', role='menuitem', tabindex='-1')
+                  div(className='container-fluid')
+                    div(className='row')
+                      div(className='col-xs-collapse-right  avatar-container col-xs-2')
+                        img(src='/imgs/app/avatars/avatar21.png', width='40', height='40', alt='john_young')
+                      div(className='col-xs-collapse-right  col-xs-collapse-left  notification-container col-xs-10')
+                        div(className='time')
+                          strong(className='fg-darkgray50')
+                            span(className='icon-fontello-user-add rubix-icon')
+                            em 2 hours ago
+                        div(className='message-header')
+                          strong(className='fg-darkgreen45') John Young added you as a collaborator
+                        div(className='message-details fg-text')
+                          span to the repository 
+                          em(className='fg-darkblue') sketchpixy/rubix
+              li(role='presentation', className='')
+                a(href='#', role='menuitem', tabindex='-1')
+                  div(className='container-fluid')
+                    div(className='row')
+                      div(className='col-xs-collapse-right  avatar-container col-xs-2')
+                        div
+                          img(src='/imgs/app/github.png', width='40', height='40', alt='github')
+                        div(className='text-center')
+                          span(className='label label-danger') ALERT
+                      div(className='col-xs-collapse-right  col-xs-collapse-left  notification-container col-xs-10')
+                        div(className='time')
+                          strong(className='fg-darkgray50')
+                            span(className='icon-fontello-attention-alt-1 rubix-icon')
+                            em 5 days ago
+                        div(className='message-header')
+                          strong(className='fg-darkgreen45') Github sent you a notification
+                        div(className='message-details fg-text')
+                          span Your 
+                          span(className='fg-darkblue') Large Plan
+                          span
+                            | will expire in one week. Please update your billing details at our Billing center. Thank you!
+              li(role='presentation')
+                div(className='container-fluid')
+                  div(className='row')
+                    div(className='col-xs-collapse-right  col-xs-collapse-left  col-xs-6')
+                      button(type='button', className='notification-footer-btn left-btn btn btn-default btn-block') MARK ALL READ
+                    div(className='col-xs-collapse-right  col-xs-collapse-left  col-xs-6')
+                      button(type='button', className='notification-footer-btn right-btn btn btn-default btn-block') VIEW ALL
+
+          //- li.pressed(role='presentation')
+          //-   a(href='/ltr/mailbox/inbox')
+          //-     i.fa.fa-envelope
+          //-     i.fa.fa-envelope-o
+          //-     //- span.icon-fontello-mail-3.rubix-icon
+
+
+
+    //- .navbar-header
+    //-   button.navbar-toggle.collapsed(type='button', data-toggle='collapse', data-target='#navbar', aria-expanded='false', aria-controls='navbar')
+    //-     span.sr-only Toggle navigation
+    //-     span.icon-bar
+    //-     span.icon-bar
+    //-     span.icon-bar
+    //-   a.navbar-brand(styleName='brand', href='#') Ngela
+    //- #navbar.navbar-collapse.collapse
+    //-   ul.nav.navbar-nav
+    //-     li.active
+    //-       a(href='#') Home
+    //-     li
+    //-       a(href='#about') About
+    //-     li
+    //-       a(href='#contact') Contact
+    //-     li.dropdown
+    //-       a.dropdown-toggle(href='#', data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='false')
+    //-         | Dropdown 
+    //-         span.caret
+    //-       ul.dropdown-menu
+    //-         li
+    //-           a(href='#') Action
+    //-         li
+    //-           a(href='#') Another action
+    //-         li
+    //-           a(href='#') Something else here
+    //-         li.divider(role='separator')
+    //-         li.dropdown-header Nav header
+    //-         li
+    //-           a(href='#') Separated link
+    //-         li
+    //-           a(href='#') One more separated link
+    //- // /.nav-collapse
+
+
+
+
+
+
+//- div(styleName='root')
+//-   div(styleName='container')
+//-     Navigation(styleName='nav')
+//-     Link(styleName='brand', to='/')
+//-     img(src='{logoUrl}', width='38', height='38', alt='React')
+//-     span(styleName='brandTxt') Your Company
+//-     div(styleName='banner')
+//-       h1(styleName='bannerTitle') React
+//-       p(styleName='bannerDesc')
+//-         | Complex web apps made easy
+//-   div
+//-     button.btn.btn-default(onClick='{this.handleClick.bind(this)}')
+//-       | add Count
+//-       | {this.props.count}
+
+
+//- .navbar.navbar-default.navbar-fixed-top
+//-   .container-fluid
+//-     .row
+//-       //- 최소화 되었을때만 나오는 메뉴 햄버거 버튼?
+//-       .visible-xs.col-xs-3
+//-         h1 1
+//-         //- ul.pull-left.visible-xs-inline-block.nav.navbar-nav
+//-         //-   li.sidebar-btn(role='presentation')
+//-         //-     a(data-id='sidebar-btn', href='/')
+//-         //-       span.icon-fontello-th-list-5.rubix-icon
+//-       //- 로고 영역
+//-       .col-sm-4.col-xs-6
+//-         h1 2
+//-         //- .navbar-header
+//-         //-   a.navbar-brand(href='#')
+//-         //-     img(src='/imgs/common/logo.png', alt='rubix', width='111', height='28')
+//-       //- 메뉴 영역
+//-       .col-xs-collapse-right.text-right.col-sm-8.col-xs-3
+//-         h1 3
+
+//- nav#rubix-nav-header.navbar.navbar-default.navbar-fixed-top
+//-   .container-fluid
+//-     .row
+//-       .visible-xs.col-xs-3
+//-         ul.pull-left.visible-xs-inline-block.nav.navbar-nav
+//-           li.sidebar-btn(role='presentation')
+//-             a(data-id='sidebar-btn', href='/')
+//-               span.icon-fontello-th-list-5.rubix-icon
+//-       .col-sm-4.col-xs-6
+//-         .navbar-header
+//-           a.navbar-brand(href='#')
+//-             img(src='/imgs/common/logo.png', alt='rubix', width='111', height='28')
+//-       .col-xs-collapse-right.text-right.col-sm-8.col-xs-3
+//-         ul.nav.navbar-nav.navbar-right
+//-           ul.hidden-xs.nav.navbar-nav
+//-             li.divider
+//-             li.hidden-sm(role='presentation')
+//-               a(href='#', role='button')
+//-                 span.fg-theme.icon-fontello-circle.rubix-icon()
+//-             li.divider

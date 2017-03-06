@@ -1,0 +1,145 @@
+// @import "./variables.scss";
+// @import "./fonts.scss";
+// @import "./icons.scss";
+// @import "./components/switch-checkbox.scss";
+
+// body {
+//     background: #e9f0f5;
+//     font-family: 'Noto Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+
+//     button, input, optgroup, select, textarea {
+//         font-family: 'Noto Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+//     }
+
+//     h1 {
+//         font-size: 24px;
+//     }
+
+//     h2 {
+//         font-size: 20px;
+//     }
+
+//     h3 {
+//         font-size: 18px;
+//     }
+
+//     h4 {
+//         font-size: 16px;
+//     }
+
+//     h5 {
+//         font-size: 14px;
+//     }
+
+//     h6 {
+//         font-size: 12px;
+//     }
+// }
+
+// h1, h2, h3, h4, h5, h6 {
+//     font-weight: 200;
+// }
+
+// .page-heading {
+//     margin-top: 16px;
+
+//     p {
+//         font-size: 14px;
+//         margin-bottom: 6px;
+//     }
+
+//     h1, h2, h3, h4, h5, h6 {
+//         margin-top: 0;
+//     }
+// }
+
+// .panel {
+//     .row {
+//         margin-left: -7px;
+//         margin-right: -7px;
+
+//         .col-sm-1,
+//         .col-sm-2,
+//         .col-sm-3,
+//         .col-sm-4,
+//         .col-sm-5,
+//         .col-sm-6,
+//         .col-sm-7,
+//         .col-sm-8,
+//         .col-sm-9,
+//         .col-sm-10,
+//         .col-sm-11,
+//         .col-sm-12 {
+//             padding-left: 8px;
+//             padding-right: 8px;
+//         }
+//     }
+// }
+
+// .panel {
+//     .panel-heading {
+//         h1, h2, h3, h4, h5, h6 {
+//             margin-top: 0;
+//             margin-bottom: 0;
+//         }
+//     }
+// }
+
+// /*
+//  * Remove text-shadow in selection highlight:
+//  * https://twitter.com/miketaylr/status/12228805301
+//  *
+//  * These selection rule sets have to be separate.
+//  * Customize the background color to match your design.
+//  */
+
+// ::-moz-selection {
+//     background: #b3d4fc;
+//     text-shadow: none;
+// }
+
+// ::selection {
+//     background: #b3d4fc;
+//     text-shadow: none;
+// }
+
+// /*
+//  * A better looking default horizontal rule
+//  */
+
+// hr {
+//     display: block;
+//     height: 1px;
+//     border: 0;
+//     border-top: 1px solid #ccc;
+//     margin: 1em 0;
+//     padding: 0;
+// }
+
+// /*
+//  * Remove the gap between audio, canvas, iframes,
+//  * images, videos and the bottom of their containers:
+//  * https://github.com/h5bp/html5-boilerplate/issues/440
+//  */
+
+// audio, canvas, iframe, img, svg, video {
+//     vertical-align: middle;
+// }
+
+// /*
+//  * Remove default fieldset styles.
+//  */
+
+// fieldset {
+//     border: 0;
+//     margin: 0;
+//     padding: 0;
+// }
+
+// /*
+//  * Allow only vertical resizing of textareas.
+//  */
+
+// textarea {
+//     resize: vertical;
+// }

@@ -1,0 +1,118 @@
+@import "../../../styles/variables.scss";
+
+.root {
+    position: fixed;
+    z-index: 1100;
+    top: 0;
+    bottom: 0;
+    left: -$aside-width;
+    width: $aside-width;
+    overflow: hidden;
+    background: #273135;
+}
+
+.avatar {
+    height: 75px;
+    height: $header-height;
+    background: #FA7252;
+}
+
+.sidebar-controls-container {
+    width: 100%;
+    height: 30px;
+    display: table;
+    visibility: visible;
+    background: #DE5939;
+}
+
+.sidebar-nav-container {
+    .sidebar-nav {
+        padding: 0;
+        list-style: none;
+        margin-left: -15px;
+        margin-right: -15px;
+
+        .sidebar-header {
+            line-height: 1;
+            font-size: 12px;
+            font-weight: bold;
+            padding-top: 25px;
+            padding-left: 25px;
+            padding-bottom: 12px;
+            text-transform: uppercase;
+            color: rgba(137, 148, 155, 0.4);
+        }
+
+        .sidebar-nav-item {
+            position: relative;
+
+            > a {
+                height: 45px;
+                border: none;
+                outline: none;
+                color: #89949B;
+                display: block;
+                font-size: 14px;
+                line-height: 14px;
+                text-decoration: none;
+                padding: 15px 25px;
+
+                .name {
+                    line-height: 18px;
+
+                    // margin-left: 15px;
+                    vertical-align: top;
+                }
+            }
+
+            &.active {
+                background: rgba(0, 0, 0, 0.4);
+
+                :after {
+                    top: 11px;
+                    right: 0;
+                    content: '';
+                    position: absolute;
+                    display: inline-block;
+                    border-top: 12px solid transparent;
+                    border-bottom: 12px solid transparent;
+                    border-right: 10px solid #E9F0F5;
+                }
+            }
+        }
+    }
+}
+
+/* [2016-11-09T04:35:54Z] added by pug-to-jsx loader */
+.sidebar-nav {
+    // background-color: yellow !important;
+}
+
+/* [2016-11-09T04:35:54Z] added by pug-to-jsx loader */
+.sidebar-nav-item {
+    // background-color: yellow !important;
+}
+
+/* [2016-11-09T04:37:10Z] added by pug-to-jsx loader */
+.sidebar-search {
+    background-color: #fff;
+}
+
+/* [2016-11-09T09:15:32Z] added by pug-to-jsx loader */
+.thmb {
+
+    margin-top:10px;
+    // background-color: yellow !important;
+
+    background: linear-gradient(to bottom, rgba(163, 171, 182, 1) 0%, rgba(133, 137, 146, 1) 100%);
+
+    // background: #fff;
+    color: #fff;
+    width: 40px;
+    height: 40px;
+    line-height: 38px;
+    font-size: 16px;
+    text-align: center;
+    white-space: nowrap;
+    border-radius: 20px;
+}

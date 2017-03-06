@@ -1,0 +1,32 @@
+{
+  "name": "treasure-hunt",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "start": "concurrently \"npm run server\" \"npm run client\"",
+    "server": "node server/index.js",
+    "client": "node scripts/start-client.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.14.1",
+    "form-data": "^2.1.2",
+    "node-fetch": "^1.6.3",
+    "node-pogo-protos": "^2.7.0",
+    "object.entries": "^1.0.4",
+    "pogobuf": "^1.10.0",
+    "socket.io": "^1.7.3"
+  },
+  "devDependencies": {
+    "concurrently": "^3.3.0",
+    "eslint": "^3.16.1",
+    "eslint-config-airbnb": "^14.1.0",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^4.0.0",
+    "eslint-plugin-react": "^6.10.0"
+  },
+  "eslintConfig": {
+    "extends": "airbnb"
+  }
+}

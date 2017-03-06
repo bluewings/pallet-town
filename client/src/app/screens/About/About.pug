@@ -1,0 +1,28 @@
+//- Layout
+div
+  div.container-fluid(styleName='root')
+    .row
+      .col-xs-12
+        h1 About
+
+        //- .panel.panel-default
+        //-   .panel-heading
+        //-     .pull-right
+        //-       Link(to='/ad-schemas/new') New ad schema
+        //-     h4 Ad schemas
+
+        //-   .panel-body
+        //-     table.table.table-condensed
+        //-       colgroup
+        //-         col(width='60px')
+        //-         col
+        //-       thead
+        //-         tr
+        //-           th No.
+        //-           th Name
+        //-       tbody
+        //-         tr(@repeat='this.props.items as item, i')
+        //-           td
+        //-             | {i + 1}
+        //-           td 
+        //-             Link(to='{"/ad-schemas/" + item.id}') {item.name}

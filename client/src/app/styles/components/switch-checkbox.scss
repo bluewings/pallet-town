@@ -1,0 +1,67 @@
+$switch-width: 32px;
+$switch-height: 18px;
+$switch-padding: 2px;
+$switch-knob-height: $switch-height - $switch-padding * 2;
+$switch-knob-width: $switch-knob-height;
+$switch-border-radius: $switch-height / 2;
+
+.switch-checkbox {
+    position: relative;
+    vertical-align: middle;
+    margin-bottom: 3px;
+
+    input[type='checkbox'] {
+        position: absolute;
+        opacity: 0;
+    }
+
+    /* Normal Track */
+    input[type='checkbox'] + div {
+        vertical-align: middle;
+        width: $switch-width;
+        height: $switch-height;
+        border-radius: $switch-border-radius;
+        background-color: rgba(0, 0, 0, 0.3);
+        transition-duration: .4s;
+        transition-property: background-color, box-shadow;
+        box-shadow: inset 0 0 0 0px rgba(0, 0, 0, 0.4);
+        box-sizing: initial;
+        cursor: pointer;
+    }
+
+    /* Checked Track (Blue) */
+    input[type='checkbox']:checked + div {
+        width: $switch-width;
+        background-position: 0 0;
+        background-color: #3b89ec;
+        box-shadow: inset 0 0 0 10px rgba(59, 137, 259, 1);
+    }
+
+    /* Green Track */
+    input[type='checkbox'].green:checked + div {
+        background-color: #00e359;
+        border: 1px solid rgba(0, 162, 63, 1);
+        box-shadow: inset 0 0 0 10px rgba(0, 227, 89, 1);
+    }
+
+    /* Normal Knob */
+    input[type='checkbox'] + div > div {
+        float: left;
+        width: $switch-knob-width;
+        height: $switch-knob-height;
+        border-radius: $switch-border-radius;
+        background: #ffffff;
+        transition-timing-function: cubic-bezier(0.54, 1.85, 0.5, 1);
+        transition-duration: 0.4s;
+        transition-property: transform, background-color, box-shadow;
+        pointer-events: none;
+        margin-top: $switch-padding;
+        margin-left: $switch-padding;
+    }
+
+    /* Checked Knob (Blue Style) */
+    input[type='checkbox']:checked + div > div {
+        transform: translate3d($switch-width - $switch-knob-width - $switch-padding * 2, 0, 0);
+        background-color: #ffffff;
+    }
+}

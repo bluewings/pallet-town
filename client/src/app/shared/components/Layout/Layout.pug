@@ -1,0 +1,32 @@
+//- div(styleName='{"root" + \
+//-   (this.props.showAside ? " show-aside": "") + \
+//-   (this.props.showEditTools ? " show-edit-tools": "") + \
+//-   (this.props.isTemplateView ? " is-template-view": "")}')
+//-   div(styleName='header')
+//-     Header
+//-   div(styleName='aside')
+//-     Aside
+//-   div(styleName='content')
+//-     //- br
+//-     //- br
+//-     //- br
+//-     //- .well
+//-     //-   h2 showAside: {this.props.showAside.toString()}
+//-     //-   h2 showEditTools: {this.props.showEditTools.toString()}
+//-     //-   h2 isTemplateView: {this.props.isTemplateView.toString()}
+
+//-     | {React.Children.only(this.props.children)}
+//-   div(styleName='footer')
+//-     Footer
+div
+  nav.navbar.navbar-default
+    .container-fluid
+      a.navbar-brand(href='/')
+        i.fa.fa-map-marker 
+        | &nbsp;HYPERLAPSE
+
+  //- .container-fluid
+  div {React.Children.only(this.props.children)}
+
+
+

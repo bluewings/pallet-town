@@ -1,0 +1,145 @@
+$icon-size: 24px;
+$icon-2x: 2;
+$icon-3x: 3;
+
+$icon-sprite-width: 144px;
+$icon-sprite-height: 72px;
+
+.type-icon {
+    display: inline-block;
+    vertical-align: top;
+
+    height: $icon-size;
+    width: $icon-size;
+    min-height: $icon-size;
+    min-width: $icon-size;
+
+    // opacity: .35;
+    background: url(./img/icon-sprite.svg) no-repeat center;
+    background-position: 0 0;
+
+    &.type-numeric {
+        background-position: 0 0;
+    }
+
+    &.type-text {
+        background-position: $icon-size * -1 0;
+    }
+
+    &.type-datetime {
+        background-position: $icon-size * -2 0;
+    }
+
+    &.type-boolean {
+        background-position: $icon-size * -3 0;
+    }
+
+    &.type-geo {
+        background-position: $icon-size * -4 0;
+    }
+
+    &.type-icon-3x {
+    height: $icon-size * $icon-3x;
+    width: $icon-size * $icon-3x;
+    min-height: $icon-size * $icon-3x;
+    min-width: $icon-size * $icon-3x;
+    background-size: $icon-sprite-width * $icon-3x  $icon-sprite-height * $icon-3x;
+
+    &.type-text {
+        background-position: $icon-size * $icon-3x * -1 0;
+    }
+
+    &.type-datetime {
+        background-position: $icon-size * $icon-3x * -2 0;
+    }
+
+    &.type-boolean {
+        background-position: $icon-size * $icon-3x * -3 0;
+    }
+
+    &.type-geo {
+        background-position: $icon-size * $icon-3x * -4 0;
+    }
+
+
+    }
+}
+
+// i.type-icon.type-text
+// i.type-icon.type-numeric
+// i.type-icon.type-datetime
+// i.type-icon.type-boolean
+// i.type-icon.type-bool
+// i.type-icon.type-geo
+
+// br
+// i.tool-icon.tool-time-series
+// i.tool-icon.tool-bar-chart
+// i.tool-icon.tool-pie-chart
+// i.tool-icon.tool-table
+// i.tool-icon.tool-scorecard
+// i.tool-icon.tool-scatter-chart
+// i.tool-icon.tool-description
+
+.tool-icon {
+    display: inline-block;
+    vertical-align: top;
+    height: $icon-size;
+    width: $icon-size;
+    min-height: $icon-size;
+    min-width: $icon-size;
+    background: url(./img/icon-sprite.svg) no-repeat center;
+    background-position: 0 $icon-size * -1;
+&.tool-time-series   { background-position: 0 $icon-size * -1;}  
+&.tool-bar-chart     { background-position: $icon-size * -1 $icon-size * -1;}  
+&.tool-pie-chart     { background-position: $icon-size * -2 $icon-size * -1;}   
+&.tool-table         { background-position: $icon-size * -3 $icon-size * -1;} 
+&.tool-scorecard     { background-position: $icon-size * -4 $icon-size * -1;}  
+&.tool-scatter-chart { background-position: $icon-size * -5 $icon-size * -1;}   
+&.tool-description   { background-position: 0 $icon-size * -2;}  
+&.tool-filter        { background-position: $icon-size * -1 $icon-size * -2;} 
+
+
+    &.tool-icon-2x {
+    height: $icon-size * $icon-2x;
+    width: $icon-size * $icon-2x;
+    min-height: $icon-size * $icon-2x;
+    min-width: $icon-size * $icon-2x;
+
+    background-position: 0 $icon-size * $icon-2x * -1;
+    background-size: $icon-sprite-width * $icon-2x  $icon-sprite-height * $icon-2x;
+
+&.tool-time-series   { background-position: 0                          $icon-size * $icon-2x * -1;}  
+&.tool-bar-chart     { background-position: $icon-size * $icon-2x * -1 $icon-size * $icon-2x * -1;}  
+&.tool-pie-chart     { background-position: $icon-size * $icon-2x * -2 $icon-size * $icon-2x * -1;}   
+&.tool-table         { background-position: $icon-size * $icon-2x * -3 $icon-size * $icon-2x * -1;} 
+&.tool-scorecard     { background-position: $icon-size * $icon-2x * -4 $icon-size * $icon-2x * -1;}  
+&.tool-scatter-chart { background-position: $icon-size * $icon-2x * -5 $icon-size * $icon-2x * -1;}   
+&.tool-description   { background-position: 0                          $icon-size * $icon-2x * -2;}  
+&.tool-filter        { background-position: $icon-size * $icon-2x * -1 $icon-size * $icon-2x * -2;} 
+
+
+}
+
+    &.tool-icon-3x {
+    height: $icon-size * $icon-3x;
+    width: $icon-size * $icon-3x;
+    min-height: $icon-size * $icon-3x;
+    min-width: $icon-size * $icon-3x;
+
+    background-position: 0 $icon-size * $icon-3x * -1;
+    background-size: $icon-sprite-width * $icon-3x  $icon-sprite-height * $icon-3x;
+
+&.tool-time-series   { background-position: 0                          $icon-size * $icon-3x * -1;}  
+&.tool-bar-chart     { background-position: $icon-size * $icon-3x * -1 $icon-size * $icon-3x * -1;}  
+&.tool-pie-chart     { background-position: $icon-size * $icon-3x * -2 $icon-size * $icon-3x * -1;}   
+&.tool-table         { background-position: $icon-size * $icon-3x * -3 $icon-size * $icon-3x * -1;} 
+&.tool-scorecard     { background-position: $icon-size * $icon-3x * -4 $icon-size * $icon-3x * -1;}  
+&.tool-scatter-chart { background-position: $icon-size * $icon-3x * -5 $icon-size * $icon-3x * -1;}   
+&.tool-description   { background-position: 0                          $icon-size * $icon-3x * -2;}  
+&.tool-filter        { background-position: $icon-size * $icon-3x * -1 $icon-size * $icon-3x * -2;} 
+
+
+}
+
+}

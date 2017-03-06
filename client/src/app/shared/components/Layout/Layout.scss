@@ -1,0 +1,203 @@
+@import "../../../styles/variables.scss";
+
+:global(.browserupgrade) {
+    margin: 0.2em 0;
+    background: #ccc;
+    color: #000;
+    padding: 0.2em 0;
+}
+
+/*
+ * Print styles
+ * Inlined to avoid the additional HTTP request:
+ * http://www.phpied.com/delay-loading-your-print-css/
+ * ========================================================================== */
+
+@media print {
+    *,
+    *::before,
+    *::after {
+        background: transparent !important;
+        color: #000 !important;
+
+        /* Black prints faster: http://www.sanbeiji.com/archives/953 */
+        box-shadow: none !important;
+        text-shadow: none !important;
+    }
+
+    a,
+    a:visited {
+        text-decoration: underline;
+    }
+
+    a[href]::after {
+        content: " (" attr(href) ")";
+    }
+
+    abbr[title]::after {
+        content: " (" attr(title) ")";
+    }
+
+    /*
+     * Don't show links that are fragment identifiers,
+     * or use the `javascript:` pseudo protocol
+     */
+
+    a[href^='#']::after,
+    a[href^='javascript:']::after {
+        content: '';
+    }
+
+    pre,
+    blockquote {
+        border: 1px solid #999;
+        page-break-inside: avoid;
+    }
+
+    /*
+     * Printing Tables:
+     * http://css-discuss.incutio.com/wiki/Printing_Tables
+     */
+
+    thead {
+        display: table-header-group;
+    }
+
+    tr,
+    img {
+        page-break-inside: avoid;
+    }
+
+    img {
+        max-width: 100% !important;
+    }
+
+    p,
+    h2,
+    h3 {
+        orphans: 3;
+        widows: 3;
+    }
+
+    h2,
+    h3 {
+        page-break-after: avoid;
+    }
+}
+
+.root {
+    .aside > div,
+    .header > nav,
+    .content,
+    .footer,
+    :global(.content-fixed) {
+        transition: all 0.3s ease;
+    }
+
+    .aside > div {
+        // border: 5px solid blue;
+   
+    }
+
+    .content {
+        margin-top: $header-height;
+        font-size: 12px;
+
+        table {
+            &:global(.table) {
+                thead, tbody {
+                    th, td {
+                        padding: 5px 16px;
+                        line-height: 24px;
+                    }
+                }
+            }
+        }
+
+        // border: 5px solid red;
+   
+    }
+
+    .footer {
+        // border: 5px solid green;
+   
+    }
+}
+
+.root {
+    &.show-aside {
+        .aside > div {
+            left: 0;
+        }
+
+        .header > nav {
+            left: $aside-width;
+            right: -$aside-width;
+        }
+
+        .content, .footer {
+            margin-left: $aside-width;
+            margin-right: -$aside-width;
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .root {
+        > :global(.container-fluid), > * > :global(.container-fluid) {
+            padding-left: 15px;
+            padding-right: 15px;
+
+            > :global(.row) > * > :global(.panel), > :global(.row) > * > * > :global(.panel) {
+                margin-left: -15px;
+                margin-right: -15px;
+                border-left: none;
+                border-right: none;
+                border-radius: 0;
+            }
+        }
+
+        :global(.content-fixed) {
+            left: 0 !important;
+        }
+    }
+}
+
+@media (min-width: 768px) {
+    .root, .root.show-aside {
+        .aside > div {
+            left: 0;
+        }
+
+        .header > nav {
+            left: $aside-width;
+            right: 0;
+        }
+
+        .content, .footer {
+            margin-left: $aside-width;
+            margin-right: 0;
+        }
+    }
+}
+
+.root {
+    &.is-template-view.show-edit-tools {
+        .aside > div {
+            left:  -$aside-width + $aside-handle-width;
+            &:hover {
+                left:  0;
+            }
+        }
+
+        .header > nav {
+            left: $aside-handle-width ;
+            // right: $aside-width !important;
+        }
+
+        .content, .footer {
+            margin-left: $aside-handle-width;
+            margin-right: $properties-panel-width !important;
+        }
+    }
+}

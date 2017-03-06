@@ -1,0 +1,64 @@
+.root {
+    background-color:yellow;
+}
+
+:global(.tile-container) {
+    filter:grayscale(1);
+}
+
+// .map-container {
+//     width: 100%;
+//     min-height: 300px;
+// }
+
+// .map-control .form-group {
+//     margin-left: 10px;
+//     margin-bottom: 10px;
+// }
+
+
+// .marker {
+//     opacity: 1;
+// }
+
+// .marker-start {
+//     margin-top: -44px;
+//     margin-left: -16px;
+//     user-select: none;
+//     width: 32px;
+//     height: 46px;
+//     background: url(http://static.naver.net/maps/ux2013/icons/sp_pins_findway.png) no-repeat;
+//     background-position: 0 -26px;
+// }
+
+// .marker-end {
+//     margin-top: -44px;
+//     margin-left: -16px;
+//     user-select: none;
+//     width: 32px;
+//     height: 46px;
+//     background: url(http://static.naver.net/maps/ux2013/icons/sp_pins_findway.png) no-repeat;
+//     background-position: -37px -26px;
+// }
+
+// .marker-moving {
+//     margin-top: -10px;
+//     margin-left: -10px;
+//     user-select: none;
+//     width: 21px;
+//     height: 21px;
+//     background: url(http://static.naver.net/maps/ux2013/icons/sp_pins_findway.png) no-repeat;
+//     background-position: -52px -128px;
+// }
+
+// .panel-heading {
+//     padding: 5px;
+// }
+
+// .panel-heading .form-group {
+//     margin-bottom: 0;
+// }
+
+// .panel-body {
+//     padding: 0;
+// }

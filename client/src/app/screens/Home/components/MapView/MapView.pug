@@ -1,0 +1,28 @@
+
+div(styleName='root',
+  ref='{(wrap) => this.wrap = wrap}')
+  .map-container(ref='{(container) => this.mapContainer = container}')
+  .pano-container(ref='{(container) => this.panoContainer = container}')
+
+  .panel.panel-default(styleName='root')
+    .panel-heading
+      .pull-right
+        .form-inline.map-control
+          .form-group
+            .input-group
+              span.input-group-addon
+                i.fa.fa-road
+              input.form-control(type='number',
+                ref='{(input) => this.inputLimitTo = input}',
+                onBlur='{this.handleValueChange.bind(this, "limitTo")}')
+
+          form.form-group
+            .input-group
+              input.form-control(type='text',
+                ref='{(input) => this.inputAddress = input}',
+                onChange='{this.handleValueChange.bind(this, "address")}')
+              span.input-group-btn
+                button.btn.btn-default(type='submit',
+                  onClick='{this.handleSearchClick}') 주소 검색
+      .clearfix
+    .panel-body
