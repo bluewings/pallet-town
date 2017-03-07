@@ -41,10 +41,34 @@ class MapView extends React.Component {
     });
 
 var level = 15;
+
+// console.log(s2.S2Cell.idToLatLng('3853772637780049920'))
         var origin = s2.S2Cell.FromLatLng({
             lat: LATLNG.NAVER._lat,
             lng: LATLNG.NAVER._lng
         }, level);
+
+        var origin2 = s2.S2Cell.FromLatLng({
+            lat: LATLNG.NAVER._lat,
+            lng: LATLNG.NAVER._lng
+        }, 15);
+
+        console.log(origin.getCornerLatLngs())
+
+        var corners = origin2.getCornerLatLngs();
+corners.push(corners[0])
+var polyline2 = new naver.maps.Polyline({
+    map: self.map,
+    fillColor: '#ff0000',
+    fillOpacity: 0.3,
+    strokeColor: '#ff0000',
+    strokeOpacity: 0.6,
+    strokeWeight: 3,
+    path: corners.map(e => {
+      return new naver.maps.LatLng(e.lat, e.lng);
+    })
+});
+         
 
         console.log('%c-=-=-=- check s2 origin', 'background-color:yellow')
         console.log(origin)
