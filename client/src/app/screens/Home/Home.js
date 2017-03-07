@@ -14,6 +14,25 @@ import io from 'socket.io-client';
 // jsx, styles
 import template from './Home.pug';
 import styles from './Home.scss';
+const s2 = require('s2-geometry').S2;
+
+const sampleS2CellId = "3853772637780049920";
+
+const images = {
+  'Poke Ball': 'pokeball.svg',
+  'Great Ball': 'superball.svg',
+  'Ultra Ball': 'ultra-ball.svg',
+  'Revive': 'revive.svg',
+  'Potion': 'potion.svg',
+  'Super Potion': 'super-potion.svg',
+  'Hyper Potion': 'hyper-potion.svg',
+  'Razz Berry': 'razz-berry.svg',
+  'Incubator Basic Unlimited': 'egg-incubator-1.svg',
+  'Incubator Basic': 'egg-incubator.svg',
+  'Lucky Egg': 'lucky-egg.svg',
+  'Incense Ordinary': 'incense.svg',
+  'Troy Disk': 'lure-module.svg',
+}
 
 class Home extends React.Component {
   constructor(props) {
@@ -22,8 +41,10 @@ class Home extends React.Component {
       splitView: true,
       route: {},
       nmapOptions: { frame: 0 },
-      username: '@gmail.com',
-      password: '',
+      // username: '@gmail.com',
+      // password: '',
+      username: 'mygenie3@gmail.com',
+      password: 'qlalf123',
       position: '',
       mapObjects: {},
       markers: [],
@@ -36,13 +57,13 @@ class Home extends React.Component {
     const reqid = Math.random().toString(36).substr(-6);
 
     if (!self.socket) {
-      return
+      return;
     }
     if (typeof callback === 'function') {
       self.callbacks[reqid] = callback;
     }
 
-console.log(type, payload)
+    console.log(type, payload);
 
     return new Promise((resolve, reject) => {
       self.socket.emit(type, {
@@ -77,47 +98,47 @@ console.log(type, payload)
     socket.emit('msg', 'hey now!');
     console.log('>>>>>>>');
 // 서버에서 news 이벤트가 일어날 때 데이터를 받는다.
-    socket.on('news',
-
-  (data) => {
-    console.log('%c socket Data', 'background-color:yellow');
-    // console.
-    console.log(data);
-  // //서버에 my other event 이벤트를 보낸다.
-  //   socket.emit('my other event',
-  //     { my: 'data' });
-  });
+    socket.on('news', (data) => {
+      console.log('%c socket Data', 'background-color:yellow');
+      // console.
+      console.log(data);
+    // //서버에 my other event 이벤트를 보낸다.
+    //   socket.emit('my other event',
+    //     { my: 'data' });
+    });
   }
 
   componentDidUpdate(prevProps, prevState) {
     if (prevState.splitView !== this.state.splitView) {
       window.dispatchEvent(new Event('resize'));
     }
-
-
-// var socket =
-//   io.connect('http://localhost:3001');
-
-// // 서버에서 news 이벤트가 일어날 때 데이터를 받는다.
-// socket.on('news',
-
-//   function (data) {
-//     console.log('%c socket Data', 'background-color:yellow');
-//     // console.
-//     console.log(data);
-//   // //서버에 my other event 이벤트를 보낸다.
-//   //   socket.emit('my other event',
-//   //     { my: 'data' });
-// });
   }
 
   handleLoginClick = () => {
+    const self = this;
     const { username, password, position } = this.state;
     const [lat, lng] = (position || '').split(',');
     this.emit('login', {
       username, password, position: { lat, lng },
     }, (response) => {
       console.log('>>> get result from callback', response);
+
+
+      self.emit('getinventory', null, (inventory) => {
+        inventory.items.forEach(item => {
+          if (images[item.name]) {
+            item.img = images[item.name]
+          }
+        })
+        inventory.items.sort((a, b) => {
+          if (a.item_id == b.item_id) {
+            return 0;
+          }
+          return a.item_id > b.item_id ? 1 : -1;
+        })
+        self.setState({ inventory });
+      });
+
     });
   }
 
@@ -144,27 +165,19 @@ console.log(type, payload)
     }
     if (type === 'getmapobjects') {
       this.emit('getmapobjects', null, (mapObjects) => {
-        
-
         const markers = mapObjects.reduce((prev, curr) => {
-          
-          curr.catchable_pokemons.forEach(pokemon => {
+          curr.catchable_pokemons.forEach((pokemon) => {
             prev.push({
               type: 'catchable',
               pokemonId: pokemon.pokemon_id,
               lat: pokemon.latitude,
               lng: pokemon.longitude,
-            })
-          })
+            });
+          });
           return prev;
         }, []);
 
         self.setState({ mapObjects, markers });
-
-        
-
-
-
       });
     }
     // if (type === 'setposition') {
@@ -212,6 +225,8 @@ console.log(type, payload)
       route: route || [],
       inventory: this.state.inventory || {},
       mapObjects: this.state.mapObjects || {},
+      items: (this.state.inventory || {}).items || [],
+      pokemons: (this.state.inventory || {}).pokemon || [],
       // samples: samples.map(e => ({
       //   name: e[2],
       //   panoId: e[0],

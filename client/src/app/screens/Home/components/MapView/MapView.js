@@ -4,6 +4,7 @@ import ApplyStyles from 'helpers/ApplyStyles';
 
 import template from './MapView.pug';
 import styles from './MapView.scss';
+const s2 = require('s2-geometry').S2;
 
 const naver = window.naver;
 
@@ -30,12 +31,115 @@ class MapView extends React.Component {
 
     this.map = new naver.maps.Map(this.mapContainer, {
       center: LATLNG.NAVER,
-      zoom: 12,
+      zoom: 10,
+      minZoom: 10,
+      maxZoom: 14,
       zoomControl: true,
       zoomControlOptions: {
         position: naver.maps.Position.TOP_RIGHT,
       },
     });
+
+var level = 15;
+        var origin = s2.S2Cell.FromLatLng({
+            lat: LATLNG.NAVER._lat,
+            lng: LATLNG.NAVER._lng
+        }, level);
+
+        console.log('%c-=-=-=- check s2 origin', 'background-color:yellow')
+        console.log(origin)
+        var quadKey = origin.toHilbertQuadkey();
+        console.log('%c-=-=-=- check s2 HilbertQuadkey', 'background-color:yellow')
+        console.log(quadKey)
+
+        const cells = []
+        cells.push(quadKey)
+
+        var radius = 4;
+
+        var i = 1;
+
+            cells.push(s2.S2Cell.FromFaceIJ(origin.face, [origin.ij[0], origin.ij[1] - i], origin.level)
+                .toHilbertQuadkey());
+            cells.push(s2.S2Cell.FromFaceIJ(origin.face, [origin.ij[0] - i, origin.ij[1] - i], origin.level)
+                .toHilbertQuadkey());
+            cells.push(s2.S2Cell.FromFaceIJ(origin.face, [origin.ij[0] - i, origin.ij[1]], origin.level)
+                .toHilbertQuadkey());
+            cells.push(s2.S2Cell.FromFaceIJ(origin.face, [origin.ij[0], origin.ij[1]], origin.level)
+                .toHilbertQuadkey());
+            // cells.push(s2.S2Cell.FromFaceIJ(origin.face, [origin.ij[0], origin.ij[1] + i], origin.level)
+            //     .toHilbertQuadkey());
+            // cells.push(s2.S2Cell.FromFaceIJ(origin.face, [origin.ij[0] - i, origin.ij[1]], origin.level)
+            //     .toHilbertQuadkey());
+            // cells.push(s2.S2Cell.FromFaceIJ(origin.face, [origin.ij[0] + i, origin.ij[1]], origin.level)
+            //     .toHilbertQuadkey());
+
+        if (false) {
+
+        for (var i = 1; i < radius; i++) {
+            // cross in middle
+            cells.push(s2.S2Cell.FromFaceIJ(origin.face, [origin.ij[0], origin.ij[1] - i], origin.level)
+                .toHilbertQuadkey());
+            cells.push(s2.S2Cell.FromFaceIJ(origin.face, [origin.ij[0], origin.ij[1] + i], origin.level)
+                .toHilbertQuadkey());
+            cells.push(s2.S2Cell.FromFaceIJ(origin.face, [origin.ij[0] - i, origin.ij[1]], origin.level)
+                .toHilbertQuadkey());
+            cells.push(s2.S2Cell.FromFaceIJ(origin.face, [origin.ij[0] + i, origin.ij[1]], origin.level)
+                .toHilbertQuadkey());
+
+            for (var j = 1; j < radius; j++) {
+                cells.push(s2.S2Cell.FromFaceIJ(origin.face, [origin.ij[0] - j, origin.ij[1] - i], origin.level)
+                    .toHilbertQuadkey());
+                cells.push(s2.S2Cell.FromFaceIJ(origin.face, [origin.ij[0] + j, origin.ij[1] - i], origin.level)
+                    .toHilbertQuadkey());
+                cells.push(s2.S2Cell.FromFaceIJ(origin.face, [origin.ij[0] - j, origin.ij[1] + i], origin.level)
+                    .toHilbertQuadkey());
+                cells.push(s2.S2Cell.FromFaceIJ(origin.face, [origin.ij[0] + j, origin.ij[1] + i], origin.level)
+                    .toHilbertQuadkey());
+            }
+        }
+        }
+
+        const rslt = cells.map(s2.toId)
+        console.log(rslt)
+        const latlngs = rslt.map(s2.idToLatLng)
+        console.log(latlngs)
+
+
+
+
+// var polyline
+var polyline;
+latlngs.reduce((prev, each) => {
+
+  return prev.then((paths) => {
+    return new Promise(resolve => {
+
+      setTimeout(function() {
+
+        if (polyline) {
+          polyline.setMap(null);
+        }
+        paths.push(each);
+
+polyline = new naver.maps.Polyline({
+    map: self.map,
+    path: paths.map(e => {
+      return new naver.maps.LatLng(e.lat, e.lng);
+    })
+});
+
+        resolve(paths);
+      }, 100);
+
+
+    })
+
+  });
+  
+  
+}, Promise.resolve([]));
+
 
     // console.log(LATLNG)
 

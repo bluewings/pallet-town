@@ -3,6 +3,9 @@ const pokemon = require('../pokemon');
 const pogobuf = require('pogobuf');
 const POGOProtos = require('node-pogo-protos');
 
+// const { items } = require('pokemon-go-node-api/items.json');
+
+// console.log(items);
 class Pokemon {
   constructor() {
 
@@ -56,6 +59,12 @@ class Pokemon {
         // Split inventory into individual arrays and log them on the console
         inventory = pogobuf.Utils.splitInventory(inventory);
         console.log('Full inventory:', inventory);
+        inventory.items.forEach((item) => {
+          item.name = (pogobuf.Utils.getEnumKeyByValue(POGOProtos.Inventory.Item.ItemId, item.item_id) || '').replace(/^Item\s+/, '');
+        });
+        inventory.pokemon.forEach((pokemon) => {
+          pokemon.name = pogobuf.Utils.getEnumKeyByValue(POGOProtos.Enums.PokemonId, pokemon.pokemon_id);
+        });
         resolve(inventory);
       });
     });
@@ -63,25 +72,21 @@ class Pokemon {
   }
 
   getMapObjects() {
-    console.log(this.lat, this.lng);
-
     const cellIDs = pogobuf.Utils.getCellIDs(this.lat, this.lng, 5, 17);
-// console.log(cellIDs);
-    // return true;
     return new Promise((resolve, reject) => {
       this.client.getMapObjects(cellIDs, Array(cellIDs.length).fill(0))
-    .then((mapObjects) => {
-      resolve(mapObjects.map_cells);
+        .then((mapObjects) => {
+          resolve(mapObjects.map_cells);
 
-      mapObjects.map_cells.forEach((cell) => {
-        console.log(`Cell ${cell.s2_cell_id.toString()}`);
-        console.log(`Has ${cell.catchable_pokemons.length} catchable Pokemon`);
-        cell.catchable_pokemons.forEach((catchablePokemon) => {
-          console.log(` - A ${pogobuf.Utils.getEnumKeyByValue(POGOProtos.Enums.PokemonId,
+          mapObjects.map_cells.forEach((cell) => {
+            // console.log(`Cell ${cell.s2_cell_id.toString()}`);
+            // console.log(`Has ${cell.catchable_pokemons.length} catchable Pokemon`);
+            cell.catchable_pokemons.forEach((catchablePokemon) => {
+              console.log(` - A ${pogobuf.Utils.getEnumKeyByValue(POGOProtos.Enums.PokemonId,
                     catchablePokemon.pokemon_id)} is asking you to catch it.`);
+            });
+          });
         });
-      });
-    });
     });
   }
 
@@ -117,11 +122,8 @@ module.exports = (io) => {
             payload: promise,
           });
         }
-
-        // return promise;
       });
     };
-
 
     socket.emit('news', { hello: 'world' });
     socket.on('event', (data) => {
@@ -136,18 +138,8 @@ module.exports = (io) => {
     });
 
     onmessage('login', ({ username, password, position }) => pokemon.login(username, password, position));
-
-    onmessage('getinventory', () => {
-      console.log('>>> getinventory');
-      return pokemon.getInventory();
-    });
-
-    onmessage('setposition', ({ lat, lng }) =>
-      // console.log('>>> getinventory')
-       pokemon.setPosition(lat, lng));
-
-    onmessage('getmapobjects', () =>
-      // console.log('>>> getinventory')
-       pokemon.getMapObjects());
+    onmessage('getinventory', () => pokemon.getInventory());
+    onmessage('setposition', ({ lat, lng }) => pokemon.setPosition(lat, lng));
+    onmessage('getmapobjects', () => pokemon.getMapObjects());
   });
 };
